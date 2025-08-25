@@ -1,0 +1,8 @@
+model_name_or_path: /home/users/nus/e0846828/LLaMA-Factory/Qwen2.5-VL-7B-Instruct
+adapter_name_or_path: /home/users/nus/e0846828/LLaMA-Factory/saves/Qwen2.5-VL-7B-Instruct/lora/qlora_covla
+finetuning_type: lora
+template: qwen2_vl
+infer_backend: huggingface
+infer_dtype: float16
+media_dir: /home/users/nus/e0846828/FSDrive/LLaMA-Factory/data/nuscenes/sweeps/CAM_FRONT
+trust_remote_code: true

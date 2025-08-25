@@ -1,0 +1,22 @@
+[
+  {
+    "id": "toy-1",
+    "images": [
+      "/home/users/nus/e0846828/FSDrive/LLaMA-Factory/data/nuscenes/sweeps/CAM_FRONT/n008-2018-08-01-15-16-36-0400__CAM_FRONT__1533151603612404.jpg"
+    ],
+    "conversations": [
+      {
+        "from": "system",
+        "value": "You're an autonomous vehicle's brain."
+      },
+      {
+        "from": "user",
+        "value": "Given the current CAM_FRONT frame: <image>\nPlease output the VQ tokens for CAM_FRONT at +1.0s."
+      },
+      {
+        "from": "assistant",
+        "value": "<VQ_6323> <VQ_7136> <VQ_9137> <VQ_1942> <VQ_15823> <VQ_5202>"
+      }
+    ]
+  }
+]

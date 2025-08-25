@@ -1,0 +1,30 @@
+{
+  "stage": "sft",
+  "do_train": true,  "do_eval": false,  "do_predict": false,
+
+  "model_name_or_path": "/home/users/nus/e0846828/LLaMA-Factory/Qwen2.5-VL-7B-Instruct",
+  "template": "qwen2_vl",
+  "trust_remote_code": true,
+
+  "finetuning_type": "lora",
+  "lora_rank": 8,
+  "lora_alpha": 16,
+  "lora_dropout": 0.05,
+
+  "data_path": "/home/users/nus/e0846828/scratch/fsdrive/pretrain_data.json",
+  "dataset_dir": "/home/users/nus/e0846828/FSDrive/LLaMA-Factory",
+
+  "output_dir": "/home/users/nus/e0846828/LLaMA-Factory/saves/Qwen2.5-VL-7B-Instruct/lora/qlora_futuretokens_1s",
+  "overwrite_output_dir": true,
+
+  "per_device_train_batch_size": 1,
+  "gradient_accumulation_steps": 16,
+  "num_train_epochs": 1,
+  "learning_rate": 5e-5,
+
+  "cutoff_len": 8192,
+  "fp16": true,
+  "report_to": [],
+  "logging_steps": 10,
+  "save_steps": 200
+}
