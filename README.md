@@ -52,7 +52,7 @@ python create_data/sft_data.py --split val
 ### 1.3 词表扩展（并入 MoVQGAN 码本 token）
 在项目根目录新建 `tools/add_movq_tokens.py`，执行：
 ```bash
-python tools/add_movq_tokens.py   --base_model Qwen/Qwen2.5-VL-7B-Instruct   --movq_config MoVQGAN/configs/movqgan_270M.yaml   --out_tokenizer_dir ./qwen2_5_vl_tokenizer_plus
+python tools/add_movq_tokens.py --base_model Qwen/Qwen2.5-VL-7B-Instruct --movq_config MoVQGAN/configs/movqgan_270M.yaml --out_tokenizer_dir ./qwen2_5_vl_tokenizer_plus
 ```
 - 作用：将 MoVQGAN 视觉码本（如 `<VQ_****>`）合并进 Qwen2.5‑VL 的 tokenizer。
 - 训练时在配置里把 `tokenizer_name_or_path` 指向 `./qwen2_5_vl_tokenizer_plus`。
