@@ -1,0 +1,34 @@
+{
+  "pretrain_data_clean": {
+    "file_name": "pretrain_data_clean.json",
+    "format": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "train_cot_motion_clean": {
+    "file_name": "train_cot_motion_clean.json",
+    "format": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "val_cot_motion_clean": {
+    "file_name": "val_cot_motion_clean.json",
+    "format": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  },
+  "toy_debug": {
+    "file_name": "toy_debug.json",
+    "format": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "images": "images"
+    }
+  }
+}

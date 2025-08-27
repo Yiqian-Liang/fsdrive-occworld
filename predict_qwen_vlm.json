@@ -1,0 +1,23 @@
+{
+  "stage": "sft",
+
+  "do_train": false,
+  "do_eval": false,
+  "do_predict": true,
+
+  "model_name_or_path": "/home/users/nus/e0846828/LLaMA-Factory/Qwen2.5-VL-7B-Instruct",
+  "template": "qwen2_vl",
+  "trust_remote_code": true,
+
+  "finetuning_type": "lora",
+  "adapter_name_or_path": "/home/users/nus/e0846828/LLaMA-Factory/saves/Qwen2.5-VL-7B-Instruct/lora/qlora_covla",
+
+  "data_path": "/home/users/nus/e0846828/FSDrive/LLaMA-Factory/data/pretrain_data.json",
+
+  "output_dir": "/home/users/nus/e0846828/FSDrive/outputs/pred1s_tokens",
+  "overwrite_output_dir": true,
+
+  "fp16": true,
+  "max_new_tokens": 1536,
+  "report_to": []
+}

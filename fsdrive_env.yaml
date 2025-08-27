@@ -1,0 +1,19 @@
+name: fsdrive
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - matplotlib==3.5.3
+      - tokenizers==0.21.0
+      - transformers==4.48.2
+      - opencv-python
+      - einops
+      - sentencepiece
+      - timm
+      - fire
+      - nuscenes-devkit==1.1.11
+      - llamafactory==0.9.2.dev0
+
