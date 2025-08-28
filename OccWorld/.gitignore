@@ -1,0 +1,24 @@
+# datasets & cache
+data/
+dataset/
+datasets/
+nuscenes/
+NuScenes/
+samples/
+sweeps/
+maps/
+logs/
+.cache/
+.venv/
+venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# 大文件类型（无论在哪都忽略；若确实要传，用 `git add -f` 指定）
+*.7z
+*.rar
+*.mp4
+*.avi
+*.mov
+*.pcd
+*.bag
