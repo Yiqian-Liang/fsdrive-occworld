@@ -2,11 +2,13 @@
 import os, sys, json, argparse, numpy as np, torch
 from pathlib import Path
 
-# --- 关键：把项目根目录(含 model/)塞进 sys.path ---
+# --- 关键：把项目根目录及 MoVQGAN/ 加入 sys.path ---
 def ensure_project_on_sys_path(project_root: str):
-    root = str(Path(project_root).resolve())
-    if root not in sys.path:
-        sys.path.insert(0, root)
+    root = Path(project_root).resolve()
+    for p in (root, root / "MoVQGAN"):
+        sp = str(p)
+        if p.exists() and sp not in sys.path:
+            sys.path.insert(0, sp)
 
 from mmengine.config import Config
 from mmengine.registry import MODELS
@@ -62,15 +64,18 @@ def main():
     ap.add_argument("--root", default=".", help="项目根目录（包含 model/）")
     args = ap.parse_args()
 
-    # 把项目根加进 sys.path（修复 “No module named 'model'”）
+    # 把项目根加进 sys.path，并注册 MOVQ 到 mmengine
     ensure_project_on_sys_path(args.root)
+    from movqgan.models.vqgan import MOVQ  # type: ignore
+    if MODELS.get('MOVQ') is None:
+        MODELS.register_module(MOVQ)
 
     root = Path(args.root)
     out_dir = Path(args.tokens_root)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # build model once
-    cfg = Config.fromfile(args.cfg)   # 现在能正确 import model.*
+    cfg = Config.fromfile(args.cfg)
     model = MODELS.build(cfg.model).eval()
     load_checkpoint(model, args.ckpt, map_location="cpu", strict=False)
 
