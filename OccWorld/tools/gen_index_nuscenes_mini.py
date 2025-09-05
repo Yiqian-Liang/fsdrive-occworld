@@ -29,6 +29,7 @@ with index_path.open("w") as f:
             cam: str(
                 dataroot
                 / nusc.get('sample_data', sample['data'][cam])['filename']
+
             )
             for cam in cams
         }
