@@ -1,2 +1,26 @@
-MoVQGAN/checkpoints/270M/models--ai-forever--MoVQGAN/blobs/
-create_data/*.pkl
+# 大文件和临时文件
+*.pt
+*.pth
+*.ckpt
+*.tar
+*.tar.gz
+*.nfs*
+*.bin
+*.pkl
+
+# 数据和输出目录
+**/data/
+**/exp/
+**/out/
+**/logs/
+**/checkpoints/
+
+# 大型JSON数据文件
+**/pretrain_data.json
+**/gt_indices_pretrain.json
+**/lf_val.json
+
+# 保留小的配置文件
+!**/config.json
+!**/package.json
+!**/pyrightconfig.json
