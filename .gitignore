@@ -24,3 +24,12 @@
 !**/config.json
 !**/package.json
 !**/pyrightconfig.json
+# 模型文件和大数据
+*.safetensors
+*.pth
+*.ckpt
+*.bin
+custom_occ_model/
+OccWorld/out/
+OccWorld/exp/
+OccWorld/data/
