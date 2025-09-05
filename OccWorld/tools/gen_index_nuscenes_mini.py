@@ -1,5 +1,6 @@
 # gen_index_nuscenes_mini.py
 import json, os
+from pathlib import Path
 from nuscenes.nuscenes import NuScenes
 
 cams = [
@@ -13,10 +14,12 @@ cams = [
 
 dataroot = os.path.join("data", "data_mini")
 if not os.path.exists(dataroot):
+
     raise FileNotFoundError(
         f"NuScenes mini dataset not found at {dataroot}. "
         "Please download and extract to this path."
     )
+
 nusc = NuScenes("v1.0-mini", dataroot=dataroot, verbose=True)
 
 index_path = os.path.join("data", "index_nuscenes_mini.jsonl")
@@ -27,6 +30,7 @@ with open(index_path, "w") as f:
             cam: os.path.join(
                 dataroot,
                 nusc.get('sample_data', sample['data'][cam])['filename'],
+
             )
             for cam in cams
         }
