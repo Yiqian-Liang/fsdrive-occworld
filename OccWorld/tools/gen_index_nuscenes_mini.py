@@ -2,18 +2,32 @@
 import json, os
 from nuscenes.nuscenes import NuScenes
 
-cams = ["CAM_FRONT_LEFT","CAM_FRONT","CAM_FRONT_RIGHT",
-        "CAM_BACK_LEFT","CAM_BACK","CAM_BACK_RIGHT"]
+cams = [
+    "CAM_FRONT_LEFT",
+    "CAM_FRONT",
+    "CAM_FRONT_RIGHT",
+    "CAM_BACK_LEFT",
+    "CAM_BACK",
+    "CAM_BACK_RIGHT",
+]
 
-dataroot = "data_mini"
+dataroot = os.path.join("data", "data_mini")
+if not os.path.exists(dataroot):
+    raise FileNotFoundError(
+        f"NuScenes mini dataset not found at {dataroot}. "
+        "Please download and extract to this path."
+    )
 nusc = NuScenes("v1.0-mini", dataroot=dataroot, verbose=True)
 
-with open("data/index_nuscenes_mini.jsonl","w") as f:
-    for sample in nusc.sample:                     # 遍历 mini 集全部样本
+index_path = os.path.join("data", "index_nuscenes_mini.jsonl")
+with open(index_path, "w") as f:
+    for sample in nusc.sample:  # 遍历 mini 集全部样本
         scene = nusc.get('scene', sample['scene_token'])['name']
         cams_rel = {
-            cam: os.path.join("data_mini/v1.0-mini",
-                              nusc.get('sample_data', sample['data'][cam])['filename'])
+            cam: os.path.join(
+                dataroot,
+                nusc.get('sample_data', sample['data'][cam])['filename'],
+            )
             for cam in cams
         }
         occ_path = f"occ_gt_npz/{sample['token']}.npz"
@@ -21,6 +35,6 @@ with open("data/index_nuscenes_mini.jsonl","w") as f:
             "scene": scene,
             "sample_token": sample["token"],
             "cams": cams_rel,
-            "occ_gt_npz": occ_path
+            "occ_gt_npz": occ_path,
         }
-        f.write(json.dumps(rec, ensure_ascii=False)+"\n")
+        f.write(json.dumps(rec, ensure_ascii=False) + "\n")
