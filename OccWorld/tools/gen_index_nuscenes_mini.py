@@ -12,23 +12,24 @@ cams = [
     "CAM_BACK_RIGHT",
 ]
 
-repo_root = Path(__file__).resolve().parents[2]
-dataroot = repo_root / "data" / "data_mini"
-if not dataroot.exists():
+dataroot = os.path.join("data", "data_mini")
+if not os.path.exists(dataroot):
+
     raise FileNotFoundError(
         f"NuScenes mini dataset not found at {dataroot}. "
         "Please download and extract to this path."
     )
-nusc = NuScenes("v1.0-mini", dataroot=str(dataroot), verbose=True)
 
-index_path = repo_root / "data" / "index_nuscenes_mini.jsonl"
-with index_path.open("w") as f:
+nusc = NuScenes("v1.0-mini", dataroot=dataroot, verbose=True)
+
+index_path = os.path.join("data", "index_nuscenes_mini.jsonl")
+with open(index_path, "w") as f:
     for sample in nusc.sample:  # 遍历 mini 集全部样本
         scene = nusc.get('scene', sample['scene_token'])['name']
         cams_rel = {
-            cam: str(
-                dataroot
-                / nusc.get('sample_data', sample['data'][cam])['filename']
+            cam: os.path.join(
+                dataroot,
+                nusc.get('sample_data', sample['data'][cam])['filename'],
 
             )
             for cam in cams
